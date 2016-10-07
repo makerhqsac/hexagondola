@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<!-- Serious credit to Injectilo for this NES codepen: https://codepen.io/injectilo/pen/MYJrmm --> 
+<div class="cable"></div>
+        <div class="controller">
+                <div class="base">
+                        <div class="front">
+                                <div class="decoration">
+                                        <div class="stickers">
+                                                <div class="st-a">A</div>
+                                                <div class="st-b">B</div>
+                                                <div class="st-select">SELECT</div>
+                                                <div class="st-start">START</div>
+                                        </div>
+                                        <div class="decoration-central">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                        </div>
+                                        
+                                </div>
+                                <div class="cross">
+                                        <div class="circle"></div>
+                                        <div class="horizontal">
+                                        <a class="panleft" href="#">
+                                                <div class="arrowlf"></div>
+                                        </a>
+                                        <a class="panright" href="#">
+                                                <div class="arrowrh"></div>
+                                        </a>
+                                        </div>
+                                        <div class="vertical">
+                                                <a class="pandown" href="#">
+                                                <div class="arrowlf"></div>
+                                                </a>
+                                                <a class="panup" href="#">
+                                                <div class="arrowrh"></div>
+                                                </a>
+                                        </div>
+                                        <div class="back-cross">
+                                                <div class="horiz"></div>
+                                                <div class="vert"></div>
+                                        </div>
+                                </div>
+                                <div class="buttons-a-b">
+                                        <a class="forward" href="#">
+                                        <div class="btn-border"><div class="btn-round a"></div></div>
+                                        </a>
+                                        <a class="backward" href="#">
+                                        <div class="btn-border"><div class="btn-round b"></div></div>
+                                        </a>
+                                </div>
+                                <div class="buttons-select">
+                                        <div class="btn-central select"></div>
+                                        <div class="btn-central start"></div>
+                                </div>
+                        </div>
+                </div>
+<img src="http://localhost:8081">
+  </div>
+
+       {% endblock %}
