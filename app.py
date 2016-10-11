@@ -32,9 +32,9 @@ def pan_change(direction):
         pan_horizontal -= 250
     if direction == "right":
         pan_horizontal += 250
-    if direction == "up":
-        pan_vertical += 250
     if direction == "down":
+        pan_vertical += 250
+    if direction == "up":
         pan_vertical -= 250
     if pan_vertical < PAN_MIN:
         pan_vertical = PAN_MIN
@@ -104,4 +104,4 @@ def pan_down():
  
  
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", port=80)
