@@ -1,6 +1,5 @@
 #!/usr/bin/python
 from flask import Flask, flash, redirect, render_template, request, session, abort
-from time import sleep
 from tram import Tram
 
 TRAM = Tram()

@@ -21,12 +21,15 @@ class Tram:
         self.pan = GPIO.PWM(pan_pin, frequency)
 
     def start_wheels(self):
+        """
+        start_wheels: method for setting duty cycle to a value that will stop them from moving
+        """
         self.wheel1.start(14)
         self.wheel2.start(14)
 
     def change_wheel_cycles(self, dc):
         """
-        soft_accelerate : when used, tram will slowly transition from zero to max speed.
+        change_wheel_cycles: method for changing duty cycle (i.e. speed) for both wheels at a time.
         """
         self.wheel1.ChangeDutyCycle(dc)
         self.wheel2.ChangeDutyCycle(dc)
@@ -51,7 +54,7 @@ class Tram:
 
     def soft_decelerate(self, direction):
         """
-        soft_accelerate : when used, tram will slowly transition from zero to max speed.
+        soft_decelerate : when used, tram will slowly transition from max to zero speed.
         """
         slow_forward_dc = 17
         full_forward_dc = 19
@@ -69,7 +72,7 @@ class Tram:
 
     def move(self, direction="forward", move_time=3):
         """
-        soft_accelerate : when used, tram will slowly transition from zero to max speed.
+        move : moves either forward (default) or backward (any other direction passed in) for move_time seconds (default three seconds). Uses soft_acceleration and soft_deceleration for movement.
         """
         self.start_wheels()
         self.soft_accelerate(direction)
@@ -80,10 +83,10 @@ class Tram:
 
     def pan(self, direction):
         """
-        soft_accelerate : when used, tram will slowly transition from zero to max speed.
+        pan : moves pan servo either to the left or to the right until it reaches either max left or max right.
         """
 
     def tilt(self, direction):
         """
-        soft_accelerate : when used, tram will slowly transition from zero to max speed.
+        tilt: moves tilt servo either up or down until max value for either is reached.
         """
