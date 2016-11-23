@@ -2,8 +2,8 @@
 import RPi.GPIO as GPIO
 from time import sleep
 
-MIN_DC = 4
-MAX_DC = 25
+MIN_DC = 6
+MAX_DC = 19
 
 center_servo = 14
 pan_value = 14
@@ -119,13 +119,13 @@ class Tram:
         global pan_value, tilt_value
         if motor == "tilt":
             tilt_value = tilt_value - 1
-            if tilt_value < MAX_DC:
-                tilt_value = MAX_DC
+            if tilt_value < MIN_DC:
+                tilt_value = MIN_DC
             self.tilt.ChangeDutyCycle(tilt_value)
         else:
             pan_value = pan_value - 1
-            if pan_value < MAX_DC:
-                pan_value = MAX_DC
+            if pan_value < MIN_DC:
+                pan_value = MIN_DC
             self.pan.ChangeDutyCycle(pan_value)
 
     def pan_direction(self, direction):
@@ -145,3 +145,6 @@ class Tram:
             self.add_angle("tilt")
         else:
             self.sub_angle("tilt")
+
+    def destroy(self):
+        GPIO.cleanup()
