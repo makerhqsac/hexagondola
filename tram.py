@@ -59,35 +59,32 @@ class Tram:
         soft_accelerate : when used, tram will slowly transition from zero to max speed.
         """
         slow_forward_dc = 17
-        full_forward_dc = 19
-        slow_backward_dc = 11.5
-        full_backward_dc = 8
+        slow_backward_dc = 11
+
         if direction == "forward":
-            self.change_wheel_cycles(slow_forward_dc)
-            sleep(1)
-            self.change_wheel_cycles(full_forward_dc)
+            for i in range(0,4):
+                self.change_wheel_cycles(slow_forward_dc + i)
+                sleep(0.25)
         else:
-            self.change_wheel_cycles(slow_backward_dc)
-            sleep(1)
-            self.change_wheel_cycles(full_backward_dc)
+            for i in range(0,4):
+                self.change_wheel_cycles(slow_backward_dc - i)
+                sleep(0.25)
 
 
     def soft_decelerate(self, direction):
         """
         soft_decelerate : when used, tram will slowly transition from max to zero speed.
         """
-        slow_forward_dc = 17
-        full_forward_dc = 19
-        slow_backward_dc = 11.5
-        full_backward_dc = 8
+        full_forward_dc = 21
+        full_backward_dc = 7
         if direction == "forward":
-            self.change_wheel_cycles(full_forward_dc)
-            sleep(1)
-            self.change_wheel_cycles(slow_forward_dc)
+            for i in range(0,4):
+                self.change_wheel_cycles(full_forward_dc - i)
+                sleep(0.25)
         else:
-            self.change_wheel_cycles(full_backward_dc)
-            sleep(1)
-            self.change_wheel_cycles(slow_backward_dc)
+            for i in range(0,4):
+                self.change_wheel_cycles(full_backward_dc + i)
+                sleep(0.25)
 
 
     def move(self, direction="forward", move_time=3):
@@ -100,6 +97,7 @@ class Tram:
         self.soft_decelerate(direction)
         sleep(2)
         self.change_wheel_cycles(14)
+        return "Tram moved %s" % direction
 
     def add_angle(self,motor):
         global pan_value, tilt_value
@@ -132,19 +130,23 @@ class Tram:
         """
         pan : moves pan servo either to the left or to the right until it reaches either max left or max right.
         """
+        global pan_value
         if direction == "left":
             self.add_angle("pan")
         else:
             self.sub_angle("pan")
+        return "Pan Value is now %d" % pan_value
 
     def tilt_direction(self, direction):
         """
         tilt: moves tilt servo either up or down until max value for either is reached.
         """
+        global tilt_value
         if direction == "up":
             self.add_angle("tilt")
         else:
             self.sub_angle("tilt")
+        return "Tilt Value is now %d" % tilt_value
 
     def destroy(self):
         GPIO.cleanup()
